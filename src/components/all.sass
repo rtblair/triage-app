@@ -112,6 +112,9 @@ $black: #2b2523
   fill: currentColor
 .navbar-brand .navbar-item.logo
   padding: 0 1rem
+footer.footer
+  padding: 3rem 0rem 0rem
+  background-color: transparent
 
 //Menu overrides
 $menu-item-color: $white-ter
@@ -267,7 +270,7 @@ section, .section-area
       img 
         display: block
 
-.answer-group label.btn, label.btn.active
+.answer-group .btn, .answer-group .btn.active
   background: none !important
   border: none
   color: black !important
@@ -280,7 +283,7 @@ section, .section-area
   width: 100%;
   cursor: pointer
 
-.answer-group label.btn:before
+.answer-group .btn:before
   position: absolute
   width: 40px;
   height: 40px;
@@ -290,7 +293,7 @@ section, .section-area
   left: 0;
   top: 18px;
 
-.answer-group label.btn.active:after
+.answer-group .btn.active:after
   position: absolute
   width: 20px;
   height: 20px;

@@ -1,9 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { Container, Row, Col } from 'react-bootstrap'
-import github from '../img/github-icon.svg'
-import logo from '../img/nyc-logo.png'
-import whiteLogo from '../img/nyc-logo-white.png';
 
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -38,29 +35,12 @@ const Navbar = class extends React.Component {
     return (
       <>
         <nav
-          className="navbar has-black-background"
-          role="navigation"
-        >
-          <Container className='top-nav'>
-            <div className="has-white-color">
-              <a href='https://nyc.gov' className="is-bold">nyc.gov</a> | <span>Office of Emergency Management</span>
-            </div>
-            <a href="https://nyc.gov">
-              <img src={whiteLogo} />
-            </a>
-          </Container>
-        </nav>
-        <nav
           className="navbar is-transparent"
           role="navigation"
           aria-label="main-navigation"
         >
           <Container>
                 <div className="navbar-brand">
-                  <Link to="/" className="navbar-item" title="Logo">
-                    <img src={logo} alt="NYC.gov" style={{ width: '88px' }} />
-                  </Link>
-                  {/* Hamburger menu */}
                   <div
                     className={`navbar-burger burger ${this.state.navBarActiveClass}`}
                     data-target="navMenu"
@@ -115,7 +95,6 @@ const Navbar = class extends React.Component {
                         <ul className='dropdown-menu' role="menu">
                           <li><Link to="/other/printed-material/">Printed Material</Link></li>
                           <li><Link to="/other/resources/">Other Resources</Link></li>
-                          <li><Link to="/other/disinformation/">Disinformation</Link></li>
                         </ul>
                       </span>
                       

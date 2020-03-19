@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import { Container, Row, Col} from 'react-bootstrap'
-import citySealImage from '../img/city-seal.png';
 import Layout from '../components/Layout'
 import HeroArea from '../components/HeroArea'
 import PageSection from '../components/PageSection'
@@ -20,7 +19,8 @@ export const IndexPageTemplate = ({
       <Container>
         <Row>
           <Col md={12} className='is-center-aligned'>
-            <img src={citySealImage} />
+            {console.log(image.childImageSharp.fluid.srcSet)}
+            <img src={image.childImageSharp.fluid.src} />
             <h1 className="has-text-weight-bold is-size-3-mobile is-size-2-tablet is-size-1-widescreen typo-title typo-main-title">
               {title}
             </h1>
@@ -76,6 +76,7 @@ const IndexPage = ({ data }) => {
         heading={frontmatter.heading}
         officials={frontmatter.officials}
         sections={frontmatter.sections}
+        image={frontmatter.image}
       />
     </Layout>
   )
@@ -96,6 +97,13 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         title
+        image {
+          childImageSharp {
+            fluid(maxWidth: 119, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
         heading
         officials {
           official
