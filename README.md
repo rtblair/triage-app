@@ -8,6 +8,26 @@ This aims to provide support to folks who are worried about their health, but at
 
 ## Collections
 
+### Question
+
+### Result
+
+## App Setup
+
+1. Fork this, and Deploy Netlify App
+
+2. Update/change social media tags
+
+3. Replace image assets: 
+
+    - static/img/favicon-16x16 
+    - static/img/favicon-32x32.png
+    - static/img/apple-touch-icon.png
+    - static/img/safari-pinned-tab.svg
+    - static/img/og-image.jpg
+
+4. Setup your Questions and Results
+
 ## Prerequisites
 
 - Node (I recommend using v8.2.0 or higher)
