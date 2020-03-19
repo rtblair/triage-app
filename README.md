@@ -4,29 +4,49 @@ This application helps health tech people to conduct a preliminary questionnaire
 
 This aims to provide support to folks who are worried about their health, but at the same time relieve health systems from pressure and overload.
 
-## Features
-
 ## Collections
+
+This process assumes that the results of the test will be the result of a combination of answers and not a result of the visitor's series of questions. For this demo, the person's answer on all four questions can have 6 results depending on their nswers to each question.
+
+The way this solution goes about it, in order to make it available in gatsby, is to use a result code taken from the questions, and submitting that to a result generator. The result generator will then match the result code submitted by the user and churns out the result - if it finds any matches. The result generator matches the result code via regular expression.
+
+**For Example**, the visitor answers YES for Question 1, and a NO-YES-NO to questions 2, 3, and 4, respectively. Depending on the result code associated in each question, assuming that YES gives you a result code `Y` and NO gives you a result code `N`, the question series would then churn out values `YNYN`. This will then be submitted to the result generator where it will use regular expression to match this with the matching result. In this example, `YNYN` will have a result that has result code `[YN]NY.`. If that's the case, the result generator will show the corresponding result.
+
 
 ### Question
 
+This collection contains all the question series. Most important aspect of this is the `answers` list field. Under the `answers` list field, you have the following:
+
+* `answer` - text that will be shown to the person
+* `resultCode` - the code that will be added to the result code that will be submitted to the result generator
+* `nextQuestion` - this links the question to another question. This will send the user to another question OR have the user submit it to the result generator
+
+!!! Don't delete `submit-to-result-generator.md`
+
 ### Result
+
+This pertains to the set of results available to the result generator. As mentioned before, the result generator uses regular expression to match the person's answers to the proper result. Pertinent fields in the result is the `resultCode` as this is where the admin would have to put the regular expression to match answers to a result.
+
+
+### Tip
+
+For best results, work backwards!
 
 ## App Setup
 
 1. Fork this, and Deploy Netlify App
 
-2. Update/change social media tags
+2. Setup your Questions and Results
 
-3. Replace image assets: 
+3. Update/change social media tags
+
+4. Replace image assets: 
 
     - static/img/favicon-16x16 
     - static/img/favicon-32x32.png
     - static/img/apple-touch-icon.png
     - static/img/safari-pinned-tab.svg
     - static/img/og-image.jpg
-
-4. Setup your Questions and Results
 
 ## Prerequisites
 
