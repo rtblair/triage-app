@@ -1,0 +1,72 @@
+backend:
+  name: git-gateway
+  branch: master
+  commit_messages:
+    create: 'Create {{collection}} “{{slug}}”'
+    update: 'Update {{collection}} “{{slug}}”'
+    delete: 'Delete {{collection}} “{{slug}}”'
+    uploadMedia: '[skip ci] Upload “{{path}}”'
+    deleteMedia: '[skip ci] Delete “{{path}}”'
+
+media_folder: static/img
+public_folder: /img
+
+collections:
+  - name: "question"
+    label: "Triage Question"
+    folder: "src/pages/question"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Template Key", name: "templateKey", widget: "hidden", default: "question-post" }
+      - { label: "Title", name: "title", widget: "string"}
+      - { label: "Subtitle", name: "subtitle", widget: "string"}
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Question Slug", name: "questionSlug", widget: "string", required: true }
+      - label: "Answers"
+        name: "answers"
+        widget: "list"
+        fields:
+          - { label: "Answer", name: "answer", widget: "string" }
+          - { label: "Code", name: "resultCode", widget: string, required: false, default: "" }
+          - { label: "Next Question", name: "nextQuestion", widget: "relation", collection: "question", searchFields: ["title"], valueField: "questionSlug", displayFields: ["title"] }
+  - name: "result"
+    label: "Triage Result"    
+    folder: "src/pages/result"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Template Key", name: "templateKey", widget: "hidden", default: "question-post" }
+      - { label: "Title", name: "title", widget: "string"}
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Result Slug", name: "resultSlug", widget: "string", required: true }
+      - { label: "Result Code", name: "resultCode", widget: "string", required: true}
+
+  - name: "wiki"
+    label: "Information Pages"
+    folder: "src/pages/wiki"
+    create: true
+    slug: "{{wikiFolder}}-{{wikiSlug}}"
+    fields:   
+      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "wiki-post"}
+      - {label: Title, name: title, widget: string}
+      - {label: Image, name: image, widget: image, required: false}
+      - {label: "Body", name: "body", widget: "markdown" }
+      - {label: Sections, name: sections, widget: list, fields: [{label: Title, name: title, widget: string}, {label: Body, name: body, widget: markdown}]}
+      - {label: Heading, name: heading, widget: string}
+      - {label: "Slug", name: wikiSlug, widget: string}
+      - {label: "Folder", name: wikiFolder, widget: string}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/index.md"
+        label: "Landing Page"
+        name: "index"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
+          - {label: Title, name: title, widget: string}
+          - {label: Image, name: image, widget: image}
+          - {label: Heading, name: heading, widget: string}
+          - {label: Officials, name: officials, widget: list, fields: [{ label: Official, name: official, widget: string }, {label: Agency, name: agency, widget: string }]}
+          - {label: Sections, name: sections, widget: list, fields: [{label: Title, name: title, widget: string}, {label: Body, name: body, widget: markdown}]}
